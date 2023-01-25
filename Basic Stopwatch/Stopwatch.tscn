@@ -1,0 +1,89 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://RobotoMono[wght].ttf" type="DynamicFontData" id=1]
+[ext_resource path="res://Stopwatch.gd" type="Script" id=2]
+
+[sub_resource type="DynamicFont" id=1]
+size = 120
+font_data = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=2]
+size = 50
+extra_spacing_top = 5
+extra_spacing_bottom = 5
+font_data = ExtResource( 1 )
+
+[node name="Stopwatch" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( 2 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+color = Color( 0.152941, 0.152941, 0.152941, 1 )
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="VBoxContainer" type="VBoxContainer" parent="HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="Timer" type="Label" parent="HBoxContainer/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 513.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+custom_fonts/font = SubResource( 1 )
+text = "00:00:00"
+align = 1
+valign = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="HBoxContainer/VBoxContainer"]
+margin_top = 517.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+
+[node name="StartStopButton" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "START"
+
+[node name="Reset" type="Button" parent="HBoxContainer/VBoxContainer/HBoxContainer"]
+visible = false
+margin_left = 514.0
+margin_right = 1024.0
+margin_bottom = 83.0
+size_flags_horizontal = 3
+custom_fonts/font = SubResource( 2 )
+text = "RESET"
+
+[node name="VSeparator" type="VSeparator" parent="HBoxContainer"]
+visible = false
+margin_left = 1020.0
+margin_right = 1024.0
+margin_bottom = 600.0
+
+[node name="TimeContainer" type="ScrollContainer" parent="HBoxContainer"]
+visible = false
+margin_left = 855.0
+margin_right = 1024.0
+margin_bottom = 600.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+size_flags_stretch_ratio = 0.2
+
+[node name="Times" type="VBoxContainer" parent="HBoxContainer/TimeContainer"]
+alignment = 1
+
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/StartStopButton" to="." method="_on_Button_pressed"]
+[connection signal="pressed" from="HBoxContainer/VBoxContainer/HBoxContainer/Reset" to="." method="_on_Reset_pressed"]
